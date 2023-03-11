@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace Bussiness.Abstract
         List<Product> GetAll();
         List<Product> GetAllByCategoryID(int id);
         List<Product> GetByUnitByPrice(decimal min, decimal max);
+        
+        List<ProductDetailDto> GetProductDetails();
         
     }
 }
