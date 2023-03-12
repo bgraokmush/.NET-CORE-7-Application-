@@ -1,6 +1,5 @@
 ﻿using Bussiness.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
 ProductTest();
@@ -11,10 +10,16 @@ static void ProductTest()
 {
     ProductManager productManager = new ProductManager(new EfProductDal());
 
-    foreach (var product in productManager.GetProductDetails())
+    var result = productManager.GetProductDetails();
+
+    if (result.Succes)
     {
-        Console.WriteLine(product.CategoryName  + "/" + product.ProductName);
+        foreach (var product in result.Data)
+        {
+            Console.WriteLine(product.CategoryName + "/" + product.ProductName);
+        }
     }
+    Console.WriteLine(result.Message);
 }
 
 static void CategoryTest()
