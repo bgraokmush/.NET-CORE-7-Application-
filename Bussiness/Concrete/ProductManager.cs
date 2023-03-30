@@ -21,21 +21,15 @@ namespace Bussiness.Concrete
             _ProductDal = productDal;
         }
 
+        
         public IResult Add(Product product)
         {
-            if(product.ProductName.Length < 2)
-            {
-                return new ErrorResult($"{product.ProductName} - {Messages.ProductNameInvalid}");
-            }
-            else
-            {
-                _ProductDal.Add(product);
-                return new Result(true, $" {product.ProductName} - {Messages.ProductAdded}");
-            }
+            //business codes
 
-
+            _ProductDal.Add(product);
+            return new Result(true, $" {product.ProductName} - {Messages.ProductAdded}");
         }
-        
+
         public IDataResults<List<Product>> GetAll()
         {
             //business codes
@@ -43,7 +37,7 @@ namespace Bussiness.Concrete
             {
                 return new DataResultSuccess<List<Product>>(
                     _ProductDal.GetAll(),
-                    Messages.SuccessGetAll);  
+                    Messages.SuccessGetAll);
             }
             else
             {
@@ -66,7 +60,7 @@ namespace Bussiness.Concrete
 
         public IDataResults<List<Product>> GetByUnitByPrice(decimal min, decimal max)
         {
-            if(min < max && min > 0)
+            if (min < max && min > 0)
             {
                 return new DataResultSuccess<List<Product>>(
                 _ProductDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max));
