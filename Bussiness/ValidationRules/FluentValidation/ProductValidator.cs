@@ -12,7 +12,7 @@ namespace Bussiness.ValidationRules.FluentValidation
     {
         public ProductValidator()
         {
-            RuleFor(p => p.ProductName).MinimumLength(2).WithMessage("Ürün adı en az 3 karakter olmalı.");
+            RuleFor(p => p.ProductName).MinimumLength(3).WithMessage("Ürün adı en az 3 karakter olmalı.");
             RuleFor(p => p.ProductName).NotEmpty().WithMessage("Ürün adı boş olamaz");
             RuleFor(p => p.ProductName).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalıdır.");
 
